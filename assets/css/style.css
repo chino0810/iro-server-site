@@ -554,4 +554,38 @@ body {
     color: #cbd5e1;
     /* 本文は落ち着いた色に */
     white-space: pre-line;
+
+}
+
+/* ===== スマホ・タブレット用の調整 ===== */
+@media (max-width: 600px) {
+    /* 全体の左右パディングを減らして横幅を確保 */
+    .nav {
+        padding: 10px 15px;
+    }
+
+    /* メニューの間隔（gap）を狭くする */
+    .nav-left, .nav-right {
+        gap: 12px;
+    }
+
+    /* 文字サイズを少し小さくして1行に収める */
+    .tab {
+        font-size: 0.85rem;
+    }
+
+    /* ロゴが場所を取らないようサイズ調整 */
+    .logo {
+        height: 36px;
+    }
+}
+
+/* さらに狭い画面（超小型スマホ）用 */
+@media (max-width: 380px) {
+    .nav-left, .nav-right {
+        gap: 8px;
+    }
+    .tab {
+        font-size: 0.75rem;
+    }
 }
