@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="UTF-8">
+    <title>最新情報 | 色鯖</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="assets/css/style.css">
+</head>
+
+<body class="detail-body">
+
+    <!-- ===== HEADER（他ページと統一） ===== -->
+    <header class="header">
+        <nav class="nav">
+            <div class="nav-left">
+                <a href="rules.html" class="tab">ルール</a>
+                <a href="kits.html" class="tab">キット</a>
+            </div>
+
+            <a href="index.html">
+                <img src="assets/icon.png" class="logo" alt="IROS">
+            </a>
+
+            <div class="nav-right">
+                <a href="guide.html" class="tab">案内</a>
+                <a href="https://discord.gg/XbbuwDZJmt" class="tab discord" target="_blank">Discord</a>
+            </div>
+        </nav>
+    </header>
+
+    <!-- ===== CONTENT ===== -->
+    <main class="content fade">
+        <article class="news-detail">
+
+            <button class="back-btn" onclick="history.back()">← 最新情報一覧へ戻る</button>
+
+            <h1 id="title"></h1>
+            <span id="date"></span>
+
+            <div class="news-image-wrap">
+                <img id="image" alt="">
+            </div>
+
+            <div id="content" class="news-content"></div>
+
+        </article>
+    </main>
+
+    <!-- ===== FOOTER ===== -->
+    <footer class="footer">
+        © Core PvP / 色鯖 Official
+    </footer>
+
+    <!-- ===== SCRIPT ===== -->
+    <script>
+        const id = new URLSearchParams(location.search).get("id");
+
+        fetch("news.json")
+            .then(res => res.json())
+            .then(news => {
+                const item = news.find(n => n.id === id);
+                if (!item) {
+                    document.getElementById("title").textContent = "記事が見つかりません";
+                    return;
+                }
+
+                document.getElementById("title").textContent = item.title;
+                document.getElementById("date").textContent = item.date;
+                document.getElementById("image").src = item.image;
+                document.getElementById("image").alt = item.title;
+                document.getElementById("content").textContent = item.content;
+
+            });
+    </script>
+
+</body>
+
+</html>
